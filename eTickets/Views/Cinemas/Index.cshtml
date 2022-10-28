@@ -1,0 +1,47 @@
+﻿@model IEnumerable<eTickets.Models.Cinema>
+
+@{
+    ViewData["Title"] = "List of cinemas";
+}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Logo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@item.Logo" alt="@item.Name" style="max-width:150px" />
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td class="align-middle">
+                            <btn class="btn btn-outline-primary">Edit</btn> |
+                            <btn class="btn btn-outline-info">Details</btn> |
+                            <btn class="btn btn-danger text-white">Delete</btn> |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
