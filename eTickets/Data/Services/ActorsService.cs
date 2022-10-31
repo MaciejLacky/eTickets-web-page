@@ -15,31 +15,36 @@ namespace eTickets.Data.Services
             _appDbContext = appDbContext;   
         }
 
-        public void Add(Actor actor)
+        public async Task AddAsync(Actor actor)
         {
-            _appDbContext.Add(actor);
-            _appDbContext.SaveChanges();
+            await _appDbContext.AddAsync(actor);
+            await _appDbContext.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var result = await _appDbContext.Actors.FirstOrDefaultAsync(x => x.Id == id);
+            _appDbContext.Actors.Remove(result);
+            await _appDbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Actor>> GetAll()
+        public async Task<IEnumerable<Actor>> GetAllAsync()
         {
             var result = await _appDbContext.Actors.ToListAsync();
             return result;
         }
 
-        public Actor GetById(int id)
+        public async Task<Actor> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var result = await _appDbContext.Actors.FirstOrDefaultAsync(act => act.Id == id);
+            return result;
         }
 
-        public Actor Update(int id, Actor newActor)
+        public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
-            throw new System.NotImplementedException();
+            _appDbContext.Actors.Update(newActor);
+            await _appDbContext.SaveChangesAsync();
+            return newActor;
         }
     }
 }

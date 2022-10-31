@@ -32,9 +32,9 @@
                         <td class ="align-middle"> @Html.DisplayFor(modelItem => item.FullName) </td>
                         <td class="align-middle"> @Html.DisplayFor(modelItem => item.Bio)</td>
                         <td class="align-middle">
-                            <btn class="btn btn-outline-primary">Edit</btn> |
-                            <btn class="btn btn-outline-info">Details</btn> |
-                            <btn class="btn btn-danger text-white">Delete</btn> |
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
                         </td>
                     </tr>
                 }
